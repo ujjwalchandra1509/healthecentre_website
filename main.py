@@ -99,6 +99,14 @@ st.markdown(
     'Your assistant will guide you to the right next step.</p></div>',
     unsafe_allow_html=True,
 )
+if not client:
+    st.warning(
+        "⚠️ **AI Assistant Offline**\n\n"
+        "To talk to CampusCare, you need to provide your own Gemini API key:\n"
+        "1. Open the **sidebar menu** by clicking the **`>`** arrow in the top-left corner of this page.\n"
+        "2. Paste your key into the **Gemini API Key** field.\n"
+        "3. Press Enter to activate the assistant!"
+    )
 status_class = "" if client else "dot-off"
 status_text = "AI assistant online" if client else "AI assistant offline · add GEMINI_API_KEY"
 st.markdown(
@@ -129,7 +137,8 @@ for message in st.session_state.chat_history:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-question = st.chat_input("Ask CampusCare anything...", disabled=not client)
+question = st.chat_input("Ask CampusCare anything...")
+
 question = question or st.session_state.pop("pending_question", None)
 if question and client:
     if not st.session_state.chat_history or st.session_state.chat_history[-1]["content"] != question:
@@ -141,14 +150,7 @@ if question and client:
         st.write(answer)
     st.session_state.chat_history.append({"role": "assistant", "content": answer})
 
-if not client:
-    st.warning(
-        "⚠️ **AI Assistant Offline**\n\n"
-        "To talk to CampusCare, you need to provide your own Gemini API key:\n"
-        "1. Open the **sidebar menu** by clicking the **`>`** arrow in the top-left corner of this page.\n"
-        "2. Paste your key into the **Gemini API Key** field.\n"
-        "3. Press Enter to activate the assistant!"
-    )
+
 
 
 stat_cols = st.columns(3)
