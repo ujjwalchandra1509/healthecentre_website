@@ -142,7 +142,14 @@ if question and client:
     st.session_state.chat_history.append({"role": "assistant", "content": answer})
 
 if not client:
-    st.info("The assistant is paused. Add `GEMINI_API_KEY` to `.env` and restart the app to enable AI guidance.")
+    st.warning(
+        "⚠️ **AI Assistant Offline**\n\n"
+        "To talk to CampusCare, you need to provide your own Gemini API key:\n"
+        "1. Open the **sidebar menu** by clicking the **`>`** arrow in the top-left corner of this page.\n"
+        "2. Paste your key into the **Gemini API Key** field.\n"
+        "3. Press Enter to activate the assistant!"
+    )
+
 
 stat_cols = st.columns(3)
 for column, label, value in zip(
