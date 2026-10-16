@@ -64,8 +64,9 @@ st.markdown(
 
 
 @st.cache_resource
-def gemma_client():
-    key = os.getenv("GEMINI_API_KEY")
+def gemma_client(user_key=None):
+    # Checks the user input first, falls back to .env if empty
+    key = user_key or os.getenv("GEMINI_API_KEY")
     return genai.Client(api_key=key) if key else None
 
 
@@ -77,8 +78,9 @@ def ask_agent(question, client):
     except (RuntimeError, ValueError, KeyError) as error:
         return f"I couldn't complete that request: {error}"
 
+# This adds the password box to the sidebar and sends it directly to your client builder
+client = gemma_client(st.sidebar.text_input("Gemini API Key", type="password"))
 
-client = gemma_client()
 today = date.today()
 doctors_today = action({"action": "list_doctors", "appointment_date": today.isoformat()})["doctors"]
 available_count = sum(doctor["available_on_date"] for doctor in doctors_today)
