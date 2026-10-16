@@ -78,8 +78,15 @@ def ask_agent(question, client):
     except (RuntimeError, ValueError, KeyError) as error:
         return f"I couldn't complete that request: {error}"
 
-# This adds the password box to the sidebar and sends it directly to your client builder
-client = gemma_client(st.sidebar.text_input("Gemini API Key", type="password"))
+# 1. Create the secure sidebar input field
+sidebar_key = st.sidebar.text_input("Gemini API Key", type="password")
+
+# 2. Grab the environment key if the sidebar is empty
+active_key = sidebar_key or os.getenv("GEMINI_API_KEY")
+
+# 3. Build the client only if a key actually exists
+client = gemma_client(active_key) if (active_key and active_key.strip()) else None
+
 
 today = date.today()
 doctors_today = action({"action": "list_doctors", "appointment_date": today.isoformat()})["doctors"]
