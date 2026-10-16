@@ -1,5 +1,6 @@
 ## About
 Hacktoberfest project by team 404 Not Found. Presentation: [ppt hacktoberfest.pptx](<ppt%20hacktoberfest.pptx>)
+We got top 5 in this MLH hackathon out of 31 teams.
 
 ## Acknowledgements
 Built with [Gemma 4](https://ai.google.dev/gemma) by Google DeepMind.
