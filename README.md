@@ -18,9 +18,9 @@ Clinic staff triage and clinician consultation when needed
 Pre-filled patient data at the Health Centre to cut repeat paperwork
 
 Benefits:
-Faster access to care and shorter queues
-Confidential, non-judgmental chat
-Reminders and self-care tips for follow-ups
-Staff spend less time on routine queries
+1.Faster access to care and shorter queues
+2.Confidential, non-judgmental chat
+3.Reminders and self-care tips for follow-ups
+4.Staff spend less time on routine queries
 
 Future: More modules (vaccination drives, wellness camps), kiosks and campus portal access, post-visit feedback to improve responses, and small pilots each semester before scaling.
